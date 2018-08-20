@@ -1,0 +1,5 @@
+{
+  "name": "@dependency/namedCurry",
+  "main": "./source/entrypoint.js",
+  "version": "1.0.0"
+}
