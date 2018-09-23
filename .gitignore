@@ -1,0 +1,12 @@
+*.DS_Store
+*.vagrant
+node_modules
+builtApp
+volume
+distribution
+Thumbs.db
+privateRepository
+bower_components
+jspm_packages
+setup/build/gulp_buildTool/npm-debug.log
+yarn-error.log
