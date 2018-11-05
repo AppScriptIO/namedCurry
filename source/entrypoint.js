@@ -20,6 +20,9 @@ export function curryNamed (keys, fn) {
     }({})
 }
 
+// TODO: check todo list in documentation folder.
+export function curryNamedInvokeManually() {}
+
 const includesEvery = (mandatory, received) =>
     mandatory.every(key =>
         received.includes(key))
