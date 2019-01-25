@@ -1,1 +1,1 @@
-repository
+./documentation/information.md
