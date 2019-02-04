@@ -1,5 +1,5 @@
 {
-    "name": "@root/setup/configuration",
+    "name": "@root/configuration",
     "version": "1.0.0",
     "main": "./configuration.js"
 }

@@ -1,5 +1,10 @@
 {
   "name": "@dependency/namedCurry",
-  "main": "./source/entrypoint.js",
-  "version": "1.0.0"
+  "main": "./source/script.js",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager",
+    "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript",
+    "@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation"
+  }
 }
