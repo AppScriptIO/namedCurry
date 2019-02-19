@@ -3,8 +3,8 @@
   "main": "./source/script.js",
   "version": "1.0.0",
   "devDependencies": {
-    "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager",
-    "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript",
-    "@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation"
+    "@dependency/scriptManager": "https://github.com/AppScriptIO/scriptManager#semver:^1.x.x",
+    "@dependency/deploymentScript": "https://github.com/AppScriptIO/deploymentScript#semver:^1.x.x",
+    "@dependency/javascriptTranspilation": "https://github.com/AppScriptIO/javascriptTranspilation#semver:^1.x.x"
   }
 }
