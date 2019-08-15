@@ -9,9 +9,5 @@ module.exports = {
             type: 'directory',
             path: `${resolvedModule.deploymentScript}/script`,
         },
-        {
-            type: 'directory', 
-            path: './script'
-        }
     ]
 }
