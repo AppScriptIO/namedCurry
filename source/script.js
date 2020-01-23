@@ -1,32 +1,33 @@
-/**
- * Source: https://github.com/gunar/ncurry 
- *  Allows for currying on named parameters i.e. { param1: '', param2: ''}
- * Features: Currying & Partial application technique - https://codeburst.io/javascript-currying-vs-partial-application-4db5b2442be8
- * Currying returning a function with default values. 
- * Partially apply a function with dynamic number of arguments.
- */
-// IMPORTANT: take notice of the way "namedCurry" works, if all required arguments are passed then it will execute the function not always the desired behavior.
- 
-export function curryNamed (keys, fn) {
-    return function helper (cache) {
-        return function (...objects) {
-            const incoming = Object.assign({}, ...objects)
-            const argsOverridden = includesSome(Object.keys(cache), Object.keys(incoming))
-            const error = `The following arguments were overidden: ${argsOverridden}`
-            if (argsOverridden.length > 0) throw Error(error)
-            const obj = Object.assign({}, cache, ...objects)
-            return includesEvery(keys, Object.keys(obj)) ? fn(obj) : helper(obj)
-        }
-    }({})
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.curryNamed = curryNamed;exports.curryNamedInvokeManually = curryNamedInvokeManually;
+
+
+
+
+
+
+
+
+function curryNamed(keys, fn) {
+  return function helper(cache) {
+    return function (...objects) {
+      const incoming = Object.assign({}, ...objects);
+      const argsOverridden = includesSome(Object.keys(cache), Object.keys(incoming));
+      const error = `The following arguments were overidden: ${argsOverridden}`;
+      if (argsOverridden.length > 0) throw Error(error);
+      const obj = Object.assign({}, cache, ...objects);
+      return includesEvery(keys, Object.keys(obj)) ? fn(obj) : helper(obj);
+    };
+  }({});
 }
 
-// TODO: check todo list in documentation folder.
-export function curryNamedInvokeManually() {}
+
+function curryNamedInvokeManually() {}
 
 const includesEvery = (mandatory, received) =>
-    mandatory.every(key =>
-        received.includes(key))
+mandatory.every((key) =>
+received.includes(key));
 
 const includesSome = (mandatory, received) =>
-    mandatory.filter(key =>
-        received.includes(key))
+mandatory.filter((key) =>
+received.includes(key));
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3NvdXJjZS9zY3JpcHQuanMiXSwibmFtZXMiOlsiY3VycnlOYW1lZCIsImtleXMiLCJmbiIsImhlbHBlciIsImNhY2hlIiwib2JqZWN0cyIsImluY29taW5nIiwiT2JqZWN0IiwiYXNzaWduIiwiYXJnc092ZXJyaWRkZW4iLCJpbmNsdWRlc1NvbWUiLCJlcnJvciIsImxlbmd0aCIsIkVycm9yIiwib2JqIiwiaW5jbHVkZXNFdmVyeSIsImN1cnJ5TmFtZWRJbnZva2VNYW51YWxseSIsIm1hbmRhdG9yeSIsInJlY2VpdmVkIiwiZXZlcnkiLCJrZXkiLCJpbmNsdWRlcyIsImZpbHRlciJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7O0FBU08sU0FBU0EsVUFBVCxDQUFxQkMsSUFBckIsRUFBMkJDLEVBQTNCLEVBQStCO0FBQ2xDLFNBQU8sU0FBU0MsTUFBVCxDQUFpQkMsS0FBakIsRUFBd0I7QUFDM0IsV0FBTyxVQUFVLEdBQUdDLE9BQWIsRUFBc0I7QUFDekIsWUFBTUMsUUFBUSxHQUFHQyxNQUFNLENBQUNDLE1BQVAsQ0FBYyxFQUFkLEVBQWtCLEdBQUdILE9BQXJCLENBQWpCO0FBQ0EsWUFBTUksY0FBYyxHQUFHQyxZQUFZLENBQUNILE1BQU0sQ0FBQ04sSUFBUCxDQUFZRyxLQUFaLENBQUQsRUFBcUJHLE1BQU0sQ0FBQ04sSUFBUCxDQUFZSyxRQUFaLENBQXJCLENBQW5DO0FBQ0EsWUFBTUssS0FBSyxHQUFJLDJDQUEwQ0YsY0FBZSxFQUF4RTtBQUNBLFVBQUlBLGNBQWMsQ0FBQ0csTUFBZixHQUF3QixDQUE1QixFQUErQixNQUFNQyxLQUFLLENBQUNGLEtBQUQsQ0FBWDtBQUMvQixZQUFNRyxHQUFHLEdBQUdQLE1BQU0sQ0FBQ0MsTUFBUCxDQUFjLEVBQWQsRUFBa0JKLEtBQWxCLEVBQXlCLEdBQUdDLE9BQTVCLENBQVo7QUFDQSxhQUFPVSxhQUFhLENBQUNkLElBQUQsRUFBT00sTUFBTSxDQUFDTixJQUFQLENBQVlhLEdBQVosQ0FBUCxDQUFiLEdBQXdDWixFQUFFLENBQUNZLEdBQUQsQ0FBMUMsR0FBa0RYLE1BQU0sQ0FBQ1csR0FBRCxDQUEvRDtBQUNILEtBUEQ7QUFRSCxHQVRNLENBU0wsRUFUSyxDQUFQO0FBVUg7OztBQUdNLFNBQVNFLHdCQUFULEdBQW9DLENBQUU7O0FBRTdDLE1BQU1ELGFBQWEsR0FBRyxDQUFDRSxTQUFELEVBQVlDLFFBQVo7QUFDbEJELFNBQVMsQ0FBQ0UsS0FBVixDQUFnQixDQUFBQyxHQUFHO0FBQ2ZGLFFBQVEsQ0FBQ0csUUFBVCxDQUFrQkQsR0FBbEIsQ0FESixDQURKOztBQUlBLE1BQU1WLFlBQVksR0FBRyxDQUFDTyxTQUFELEVBQVlDLFFBQVo7QUFDakJELFNBQVMsQ0FBQ0ssTUFBVixDQUFpQixDQUFBRixHQUFHO0FBQ2hCRixRQUFRLENBQUNHLFFBQVQsQ0FBa0JELEdBQWxCLENBREosQ0FESiIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogU291cmNlOiBodHRwczovL2dpdGh1Yi5jb20vZ3VuYXIvbmN1cnJ5IFxuICogIEFsbG93cyBmb3IgY3Vycnlpbmcgb24gbmFtZWQgcGFyYW1ldGVycyBpLmUuIHsgcGFyYW0xOiAnJywgcGFyYW0yOiAnJ31cbiAqIEZlYXR1cmVzOiBDdXJyeWluZyAmIFBhcnRpYWwgYXBwbGljYXRpb24gdGVjaG5pcXVlIC0gaHR0cHM6Ly9jb2RlYnVyc3QuaW8vamF2YXNjcmlwdC1jdXJyeWluZy12cy1wYXJ0aWFsLWFwcGxpY2F0aW9uLTRkYjViMjQ0MmJlOFxuICogQ3VycnlpbmcgcmV0dXJuaW5nIGEgZnVuY3Rpb24gd2l0aCBkZWZhdWx0IHZhbHVlcy4gXG4gKiBQYXJ0aWFsbHkgYXBwbHkgYSBmdW5jdGlvbiB3aXRoIGR5bmFtaWMgbnVtYmVyIG9mIGFyZ3VtZW50cy5cbiAqL1xuLy8gSU1QT1JUQU5UOiB0YWtlIG5vdGljZSBvZiB0aGUgd2F5IFwibmFtZWRDdXJyeVwiIHdvcmtzLCBpZiBhbGwgcmVxdWlyZWQgYXJndW1lbnRzIGFyZSBwYXNzZWQgdGhlbiBpdCB3aWxsIGV4ZWN1dGUgdGhlIGZ1bmN0aW9uIG5vdCBhbHdheXMgdGhlIGRlc2lyZWQgYmVoYXZpb3IuXG4gXG5leHBvcnQgZnVuY3Rpb24gY3VycnlOYW1lZCAoa2V5cywgZm4pIHtcbiAgICByZXR1cm4gZnVuY3Rpb24gaGVscGVyIChjYWNoZSkge1xuICAgICAgICByZXR1cm4gZnVuY3Rpb24gKC4uLm9iamVjdHMpIHtcbiAgICAgICAgICAgIGNvbnN0IGluY29taW5nID0gT2JqZWN0LmFzc2lnbih7fSwgLi4ub2JqZWN0cylcbiAgICAgICAgICAgIGNvbnN0IGFyZ3NPdmVycmlkZGVuID0gaW5jbHVkZXNTb21lKE9iamVjdC5rZXlzKGNhY2hlKSwgT2JqZWN0LmtleXMoaW5jb21pbmcpKVxuICAgICAgICAgICAgY29uc3QgZXJyb3IgPSBgVGhlIGZvbGxvd2luZyBhcmd1bWVudHMgd2VyZSBvdmVyaWRkZW46ICR7YXJnc092ZXJyaWRkZW59YFxuICAgICAgICAgICAgaWYgKGFyZ3NPdmVycmlkZGVuLmxlbmd0aCA+IDApIHRocm93IEVycm9yKGVycm9yKVxuICAgICAgICAgICAgY29uc3Qgb2JqID0gT2JqZWN0LmFzc2lnbih7fSwgY2FjaGUsIC4uLm9iamVjdHMpXG4gICAgICAgICAgICByZXR1cm4gaW5jbHVkZXNFdmVyeShrZXlzLCBPYmplY3Qua2V5cyhvYmopKSA/IGZuKG9iaikgOiBoZWxwZXIob2JqKVxuICAgICAgICB9XG4gICAgfSh7fSlcbn1cblxuLy8gVE9ETzogY2hlY2sgdG9kbyBsaXN0IGluIGRvY3VtZW50YXRpb24gZm9sZGVyLlxuZXhwb3J0IGZ1bmN0aW9uIGN1cnJ5TmFtZWRJbnZva2VNYW51YWxseSgpIHt9XG5cbmNvbnN0IGluY2x1ZGVzRXZlcnkgPSAobWFuZGF0b3J5LCByZWNlaXZlZCkgPT5cbiAgICBtYW5kYXRvcnkuZXZlcnkoa2V5ID0+XG4gICAgICAgIHJlY2VpdmVkLmluY2x1ZGVzKGtleSkpXG5cbmNvbnN0IGluY2x1ZGVzU29tZSA9IChtYW5kYXRvcnksIHJlY2VpdmVkKSA9PlxuICAgIG1hbmRhdG9yeS5maWx0ZXIoa2V5ID0+XG4gICAgICAgIHJlY2VpdmVkLmluY2x1ZGVzKGtleSkpXG4iXX0=
