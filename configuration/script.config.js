@@ -1,6 +1,6 @@
 const path = require('path')
 const resolvedModule = {
-    get deploymentScript() { return path.dirname( require.resolve(`@dependency/deploymentScript/package.json`) )  },
+    get deploymentScript() { return path.dirname( require.resolve(`@deployment/deploymentScript/package.json`) )  },
 }
 
 module.exports = {
